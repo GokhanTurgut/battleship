@@ -6,6 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Battleship</title>
     <script defer src="./dist/index.js"></script>
+    <link rel="stylesheet" href="./styles/style.css" />
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1>Pirate Battle</h1>
+    </header>
+    <main>
+      <h2>Welcome Captain, aarrr!</h2>
+      <input
+        type="text"
+        placeholder="Name"
+        autocomplete="off"
+        id="playerOneName"
+      />
+      <button id="startBtn">Start Battle!</button>
+
+      <span id="placeShipMassage">Place your ships, Captain!</span>
+
+      <div id="playerOneContainer">
+        <span id="playerOneNameDisplay"></span>
+        <div id="playerOneBoard"></div>
+      </div>
+      <div id="playerTwoContainer">
+        <span id="playerTwoNameDisplay"></span>
+        <div id="playerTwoBoard"></div>
+      </div>
+    </main>
+  </body>
 </html>
