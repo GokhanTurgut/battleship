@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 function Ship(length) {
     const health = [];
     for (let i = 0; i < length; i++) {
@@ -22,4 +20,4 @@ function Ship(length) {
     }
     return { hit, isSunk, showHealth };
 }
-exports.default = Ship;
+export default Ship;

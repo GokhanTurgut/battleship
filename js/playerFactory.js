@@ -1,11 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const gameboardFactory_1 = __importDefault(require("./gameboardFactory"));
+import Gameboard from "./gameboardFactory";
 function Player(name, ai) {
-    const playerBoard = (0, gameboardFactory_1.default)();
+    const playerBoard = Gameboard();
     function getName() {
         return name;
     }
@@ -26,4 +21,4 @@ function Player(name, ai) {
     else
         return { getName, getBoard };
 }
-exports.default = Player;
+export default Player;

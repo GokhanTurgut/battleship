@@ -1,9 +1,4 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const shipFactory_1 = __importDefault(require("./shipFactory"));
+import Ship from "./shipFactory";
 function Gameboard() {
     const board = [];
     for (let i = 0; i < 10; i++) {
@@ -20,7 +15,7 @@ function Gameboard() {
     }
     const ships = [];
     function placeShip(length, xCoord, yCoord, horizontal) {
-        const newShip = (0, shipFactory_1.default)(length);
+        const newShip = Ship(length);
         ships.push(newShip);
         if (horizontal) {
             for (let i = 0; i < length; i++) {
@@ -63,4 +58,4 @@ function Gameboard() {
     }
     return { placeShip, receiveAttack, gameOver };
 }
-exports.default = Gameboard;
+export default Gameboard;
