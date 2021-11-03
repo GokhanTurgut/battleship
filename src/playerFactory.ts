@@ -1,11 +1,9 @@
 import Gameboard from "./gameboardFactory";
 
-function Player(name: string, ai: boolean) {
+function Player(ai: boolean) {
   const playerBoard = Gameboard();
-  function getName() {
-    return name;
-  }
-  function getBoard() {
+
+  function getPlayerBoard() {
     return playerBoard;
   }
   if (ai) {
@@ -17,8 +15,8 @@ function Player(name: string, ai: boolean) {
         result = enemyBoard.receiveAttack(xCoord, yCoord);
       } while (result === false);
     }
-    return { getName, getBoard, aiMove };
-  } else return { getName, getBoard };
+    return { getPlayerBoard, aiMove };
+  } else return { getPlayerBoard };
 }
 
 export default Player;

@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+}
+
+.boardCell {
+  background-color: rgb(140, 219, 233);
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.ship {
+  background-color: #885c36;
+}
+
+.boardOne,
+.boardTwo {
+  display: grid;
+  grid-template-columns: repeat(10, 2.5rem);
+  background-color: rgb(116, 116, 116);
+  width: fit-content;
+  gap: 3px;
+  border: 5px solid black;
+  margin: 1rem;
+}
+
+.displayNone {
+  display: none;
+}
+
+.hit {
+  background-color: red;
+}

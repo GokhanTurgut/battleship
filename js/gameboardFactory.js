@@ -56,6 +56,9 @@ function Gameboard() {
         });
         return allShipsSunk;
     }
-    return { placeShip, receiveAttack, gameOver };
+    function getBoard() {
+        return board;
+    }
+    return { placeShip, receiveAttack, gameOver, getBoard };
 }
 export default Gameboard;
