@@ -10,56 +10,67 @@ const startBtn = document.getElementById("startBtn");
 const donePlacingBtn = document.getElementById("donePlacingBtn");
 const playerOneCells = [];
 const playerTwoCells = [];
-function startBtnEvent(playerOneBoard, playerTwoBoard) {
+function startBtnEvent() {
     startBtn.addEventListener("click", () => {
         playerOneNameDisplay.textContent = playerOneName.value;
         placeShipState();
-        createBoard(playerOneBoard, playerTwoBoard);
+        createBoards();
     });
 }
-function doneBtnEvent(playerOneBoard) {
+function doneBtnEvent(computer, player) {
     donePlacingBtn.addEventListener("click", () => {
-        displayShips(playerOneBoard, playerOneCells);
+        displayShips(player.getPlayerBoard().getBoard(), playerOneCells, true);
         playerTwoContainer.classList.remove("displayNone");
+        computerCellEventAdder(computer, player);
     });
 }
-function createBoard(playerOneBoard, playerTwoBoard) {
+function createBoards() {
     for (let i = 0; i < 100; i++) {
         const cell = document.createElement("div");
         cell.classList.add("boardCell");
-        if (playerOneBoard !== "none") {
-            cell.addEventListener("click", () => {
-                let xCoord = i % 10;
-                let yCoord = Math.floor(i / 10);
-                playerOneBoard.receiveAttack(xCoord, yCoord);
-                displayShips(playerOneBoard.getBoard(), playerOneCells);
-            });
-        }
         playerOneCells.push(cell);
         playerOneBoardContainer.appendChild(cell);
     }
     for (let i = 0; i < 100; i++) {
         const cell = document.createElement("div");
         cell.classList.add("boardCell");
-        cell.addEventListener("click", () => {
-            let xCoord = i % 10;
-            let yCoord = Math.floor(i / 10);
-            playerTwoBoard.receiveAttack(xCoord, yCoord);
-            displayShips(playerTwoBoard.getBoard(), playerTwoCells);
-        });
         playerTwoCells.push(cell);
         playerTwoBoardContainer.appendChild(cell);
     }
 }
-function displayShips(board, playerCellArray) {
+function displayShips(board, playerCellArray, showShip) {
     for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {
-            if (board[i][j].ship !== "none") {
+            if (board[i][j].ship !== "none" && showShip === true) {
                 playerCellArray[i * 10 + j].classList.add("ship");
             }
-            else if (board[i][j].hit === true) {
+            if (board[i][j].ship !== "none" && board[i][j].hit === true) {
+                playerCellArray[i * 10 + j].classList.add("damage");
+            }
+            if (board[i][j].ship === "none" && board[i][j].hit === true) {
                 playerCellArray[i * 10 + j].classList.add("hit");
             }
+        }
+    }
+}
+function computerCellEventAdder(computer, player) {
+    for (let i = 0; i < playerTwoCells.length; i++) {
+        let xCoord = i % 10;
+        let yCoord = Math.floor(i / 10);
+        function cellEventRemover(cellsArray) {
+            cellsArray.forEach((cell) => {
+                cell.removeEventListener("click", cellEvent);
+            });
+        }
+        function cellEvent() {
+            computer.getPlayerBoard().receiveAttack(xCoord, yCoord);
+            displayShips(computer.getPlayerBoard().getBoard(), playerTwoCells, false);
+            computer.aiMove(player.getPlayerBoard());
+            displayShips(player.getPlayerBoard().getBoard(), playerOneCells, true);
+            cellEventRemover(playerTwoCells);
+        }
+        if (computer.getPlayerBoard().getBoard()[yCoord][xCoord].hit === false) {
+            playerTwoCells[i].addEventListener("click", cellEvent);
         }
     }
 }

@@ -28,6 +28,10 @@ body {
 }
 
 .hit {
+  background-color: #ffe600;
+}
+
+.damage {
   background-color: red;
 }
 
