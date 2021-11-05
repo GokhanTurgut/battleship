@@ -154,6 +154,10 @@ main {
   margin: 1rem;
 }
 
+.boardTwo > .boardCell {
+  cursor: crosshair;
+}
+
 .displayNone.displayNone {
   display: none;
 }
