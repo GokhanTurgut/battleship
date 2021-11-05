@@ -7,34 +7,49 @@
     <title>Battleship</title>
     <script defer src="./main.js"></script>
     <link rel="stylesheet" href="./styles/index.css" />
+    <link
+      rel="shortcut icon"
+      href="./images/pirateFlag.jpg"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <header>
+      <img src="./images/pirateFlag.jpg" alt="Pirate Flag" />
       <h1>Pirate Battle</h1>
+      <img src="./images/pirateFlag.jpg" alt="Pirate Flag" />
     </header>
     <main>
-      <h2 id="welcomeMassage">Welcome Captain, aarrr!</h2>
-      <input
-        type="text"
-        placeholder="Name"
-        autocomplete="off"
-        id="playerOneName"
-      />
-      <button id="startBtn">Start Battle!</button>
+      <div class="welcomeScreen">
+        <h2 id="welcomeMassage">Welcome Captain, aarrr!</h2>
+        <input
+          type="text"
+          placeholder="Name"
+          autocomplete="off"
+          id="playerOneName"
+        />
+        <button id="startBtn">Start Battle!</button>
+      </div>
 
-      <span id="placeShipMassage" class="displayNone"
-        >Place your ships, Captain!</span
-      >
-      <button id="rotateBtn" class="displayNone">Rotate</button>
-      <div id="playerOneContainer" class="displayNone">
-        <span id="playerOneNameDisplay"></span>
-        <div id="playerOneBoard" class="boardOne"></div>
+      <div class="placeShipSection">
+        <span id="placeShipMassage" class="displayNone"
+          >Place your ships, Captain!</span
+        >
+        <button id="rotateBtn" class="displayNone">Rotate</button>
       </div>
-      <div id="playerTwoContainer" class="displayNone">
-        <span id="playerTwoNameDisplay"></span>
-        <div id="playerTwoBoard" class="boardTwo"></div>
+
+      <div class="playerContainers">
+        <div id="playerOneContainer" class="displayNone">
+          <span id="playerOneNameDisplay"></span>
+          <div id="playerOneBoard" class="boardOne"></div>
+          <button id="donePlacingBtn" class="displayNone">Done</button>
+        </div>
+        <div id="playerTwoContainer" class="displayNone">
+          <span id="playerTwoNameDisplay"></span>
+          <div id="playerTwoBoard" class="boardTwo"></div>
+        </div>
       </div>
-      <button id="donePlacingBtn" class="displayNone">Done</button>
+
       <div id="gameOverModal" class="displayNone gameOverModal">
         <div class="modalContainer">
           <div id="gameOverMassage"></div>
