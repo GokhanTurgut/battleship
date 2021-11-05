@@ -1,10 +1,15 @@
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: BlackRose, Helvetica, Arial, sans-serif;
 }
 
+@font-face {
+  font-family: BlackRose;
+  src: url(../fonts/BlackRose-2Onld.ttf);
+}
 .boardCell {
-  background-color: rgb(140, 219, 233);
+  background-color: #8cdbe9;
   width: 2.5rem;
   height: 2.5rem;
 }
@@ -13,7 +18,7 @@ body {
 .boardTwo {
   display: grid;
   grid-template-columns: repeat(10, 2.5rem);
-  background-color: rgb(116, 116, 116);
+  background-color: #747474;
   width: fit-content;
   gap: 3px;
   border: 5px solid black;
@@ -29,7 +34,7 @@ body {
 }
 
 .hit {
-  background-color: rgb(255, 230, 0);
+  background-color: #ffe600;
 }
 
 .damage {
@@ -52,3 +57,5 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+/*# sourceMappingURL=index.css.map */
