@@ -9,10 +9,6 @@ body {
   height: 2.5rem;
 }
 
-.ship {
-  background-color: #885c36;
-}
-
 .boardOne,
 .boardTwo {
   display: grid;
@@ -28,12 +24,20 @@ body {
   display: none;
 }
 
+.ship {
+  background-color: #885c36;
+}
+
 .hit {
   background-color: rgb(255, 230, 0);
 }
 
 .damage {
   background-color: red;
+}
+
+.hovering {
+  background-color: green;
 }
 
 .gameOverModal {

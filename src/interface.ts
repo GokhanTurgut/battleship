@@ -11,26 +11,34 @@ const playerOneBoardContainer = document.getElementById("playerOneBoard")!;
 const playerTwoBoardContainer = document.getElementById("playerTwoBoard")!;
 const gameOverModal = document.getElementById("gameOverModal")!;
 const gameOverMassage = document.getElementById("gameOverMassage")!;
-
 const startBtn = document.getElementById("startBtn")!;
 const donePlacingBtn = document.getElementById("donePlacingBtn")!;
+const rotateBtn = document.getElementById("rotateBtn")!;
 
 const playerOneCells: HTMLElement[] = [];
 const playerTwoCells: HTMLElement[] = [];
 
-function startBtnEvent() {
+let horizontal = true;
+let shipSize = 5;
+
+function startBtnEvent(player: any) {
   startBtn.addEventListener("click", () => {
     playerOneNameDisplay.textContent = playerOneName.value;
     placeShipState();
     createBoards();
+    placeShipEventAdder(player);
+    rotateBtnEvent();
   });
 }
+
 function doneBtnEvent(computer: any, player: any) {
   donePlacingBtn.addEventListener("click", () => {
-    computerGameplayState();
-    displayShips(player.getPlayerBoard().getBoard(), playerOneCells, true);
-    playerTwoContainer.classList.remove("displayNone");
-    computerCellEventAdder(computer, player);
+    if (shipSize === 0) {
+      computerGameplayState();
+      displayShips(player.getPlayerBoard().getBoard(), playerOneCells, true);
+      playerTwoContainer.classList.remove("displayNone");
+      computerCellEventAdder(computer, player);
+    }
   });
 }
 
@@ -95,6 +103,58 @@ function computerCellEventAdder(computer: any, player: any) {
   }
 }
 
+function placeShipEventAdder(player: any) {
+  playerOneCells.forEach((cell, index) => {
+    cell.addEventListener("mousemove", function hoverState() {
+      for (let i = 0; i < shipSize; i++) {
+        if (horizontal === true && index % 10 < 11 - shipSize) {
+          playerOneCells[index + i].classList.add("hovering");
+        }
+        if (horizontal === false && Math.floor(index / 10) < 11 - shipSize) {
+          playerOneCells[index + i * 10].classList.add("hovering");
+        }
+      }
+    });
+    cell.addEventListener("mouseout", function hoverOverState() {
+      for (let i = 0; i < shipSize + 1; i++) {
+        if (horizontal === true && index % 10 < 11 - shipSize) {
+          playerOneCells[index + i].classList.remove("hovering");
+        }
+        if (horizontal === false && Math.floor(index / 10) < 11 - shipSize) {
+          playerOneCells[index + i * 10].classList.remove("hovering");
+        }
+      }
+    });
+    cell.addEventListener("click", function clickPlaceShip() {
+      if (horizontal === true && index % 10 < 11 - shipSize) {
+        let xCoord = index % 10;
+        let yCoord = Math.floor(index / 10);
+        player.getPlayerBoard().placeShip(shipSize, xCoord, yCoord, horizontal);
+        displayShips(player.getPlayerBoard().getBoard(), playerOneCells, true);
+        shipSize--;
+      }
+      if (horizontal === false && Math.floor(index / 10) < 11 - shipSize) {
+        let xCoord = index % 10;
+        let yCoord = Math.floor(index / 10);
+        player.getPlayerBoard().placeShip(shipSize, xCoord, yCoord, horizontal);
+        displayShips(player.getPlayerBoard().getBoard(), playerOneCells, true);
+        shipSize--;
+      }
+    });
+  });
+}
+
+function rotateBtnEvent() {
+  rotateBtn.classList.remove("displayNone");
+  rotateBtn.addEventListener("click", () => {
+    if (horizontal) {
+      horizontal = false;
+    } else {
+      horizontal = true;
+    }
+  });
+}
+
 function placeShipState() {
   welcomeMassage.classList.add("displayNone");
   playerOneName.classList.add("displayNone");
@@ -107,6 +167,7 @@ function placeShipState() {
 function computerGameplayState() {
   placeShipMassage.classList.add("displayNone");
   playerTwoNameDisplay.textContent = "Computer";
+  rotateBtn.classList.add("displayNone");
 }
 
 export { startBtnEvent, doneBtnEvent };
