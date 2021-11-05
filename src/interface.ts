@@ -1,3 +1,4 @@
+const welcomeMassage = document.getElementById("welcomeMassage")!;
 const playerOneName = <HTMLInputElement>(
   document.getElementById("playerOneName")!
 );
@@ -8,6 +9,8 @@ const playerOneNameDisplay = document.getElementById("playerOneNameDisplay")!;
 const playerTwoNameDisplay = document.getElementById("playerTwoNameDisplay")!;
 const playerOneBoardContainer = document.getElementById("playerOneBoard")!;
 const playerTwoBoardContainer = document.getElementById("playerTwoBoard")!;
+const gameOverModal = document.getElementById("gameOverModal")!;
+const gameOverMassage = document.getElementById("gameOverMassage")!;
 
 const startBtn = document.getElementById("startBtn")!;
 const donePlacingBtn = document.getElementById("donePlacingBtn")!;
@@ -24,6 +27,7 @@ function startBtnEvent() {
 }
 function doneBtnEvent(computer: any, player: any) {
   donePlacingBtn.addEventListener("click", () => {
+    computerGameplayState();
     displayShips(player.getPlayerBoard().getBoard(), playerOneCells, true);
     playerTwoContainer.classList.remove("displayNone");
     computerCellEventAdder(computer, player);
@@ -76,6 +80,14 @@ function computerCellEventAdder(computer: any, player: any) {
       computer.aiMove(player.getPlayerBoard());
       displayShips(player.getPlayerBoard().getBoard(), playerOneCells, true);
       cellEventRemover(playerTwoCells);
+      if (computer.getPlayerBoard().gameOver()) {
+        gameOverModal.classList.remove("displayNone");
+        gameOverMassage.textContent = "Player wins!";
+      }
+      if (player.getPlayerBoard().gameOver()) {
+        gameOverModal.classList.remove("displayNone");
+        gameOverMassage.textContent = "Computer wins!";
+      }
     }
     if (computer.getPlayerBoard().getBoard()[yCoord][xCoord].hit === false) {
       playerTwoCells[i].addEventListener("click", cellEvent);
@@ -84,11 +96,17 @@ function computerCellEventAdder(computer: any, player: any) {
 }
 
 function placeShipState() {
+  welcomeMassage.classList.add("displayNone");
   playerOneName.classList.add("displayNone");
   startBtn.classList.add("displayNone");
   placeShipMassage.classList.remove("displayNone");
   playerOneContainer.classList.remove("displayNone");
   donePlacingBtn.classList.remove("displayNone");
+}
+
+function computerGameplayState() {
+  placeShipMassage.classList.add("displayNone");
+  playerTwoNameDisplay.textContent = "Computer";
 }
 
 export { startBtnEvent, doneBtnEvent };

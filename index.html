@@ -13,7 +13,7 @@
       <h1>Pirate Battle</h1>
     </header>
     <main>
-      <h2>Welcome Captain, aarrr!</h2>
+      <h2 id="welcomeMassage">Welcome Captain, aarrr!</h2>
       <input
         type="text"
         placeholder="Name"
@@ -34,6 +34,12 @@
         <div id="playerTwoBoard" class="boardTwo"></div>
       </div>
       <button id="donePlacingBtn" class="displayNone">Done</button>
+      <div id="gameOverModal" class="displayNone gameOverModal">
+        <div class="modalContainer">
+          <div id="gameOverMassage"></div>
+          <a href="/index.html">Play Again!</a>
+        </div>
+      </div>
     </main>
   </body>
 </html>
