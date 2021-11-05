@@ -27,10 +27,9 @@ function startBtnEvent(player) {
 }
 function doneBtnEvent(computer, player) {
     donePlacingBtn.addEventListener("click", () => {
-        if (shipSize === 0) {
+        if (shipSize < 1) {
             computerGameplayState();
             displayShips(player.getPlayerBoard().getBoard(), playerOneCells, true);
-            playerTwoContainer.classList.remove("displayNone");
             computerCellEventAdder(computer, player);
         }
     });
@@ -156,11 +155,15 @@ function placeShipState() {
     startBtn.classList.add("displayNone");
     placeShipMassage.classList.remove("displayNone");
     playerOneContainer.classList.remove("displayNone");
+    playerOneContainer.style.display = "flex";
     donePlacingBtn.classList.remove("displayNone");
 }
 function computerGameplayState() {
     placeShipMassage.classList.add("displayNone");
     playerTwoNameDisplay.textContent = "Computer";
     rotateBtn.classList.add("displayNone");
+    playerTwoContainer.classList.remove("displayNone");
+    playerTwoContainer.style.display = "flex";
+    donePlacingBtn.style.display = "none";
 }
 export { startBtnEvent, doneBtnEvent };

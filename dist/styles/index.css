@@ -2,12 +2,140 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: BlackRose, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 @font-face {
   font-family: BlackRose;
   src: url(../fonts/BlackRose-2Onld.ttf);
 }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+}
+header h1 {
+  font-size: 4rem;
+}
+header img {
+  width: 15rem;
+}
+
+main {
+  background-color: #222;
+  flex: 1;
+}
+
+.welcomeScreen {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.welcomeScreen h2 {
+  font-size: 2rem;
+}
+.welcomeScreen input {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  width: 12rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: BlackRose;
+}
+.welcomeScreen button {
+  width: 12rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: BlackRose;
+  cursor: pointer;
+  transition: 0.2s ease-in-out 0s;
+  padding: 1rem;
+  border-radius: 50px;
+}
+.welcomeScreen button:hover {
+  transform: scale(1.25);
+  background-color: white;
+  color: black;
+}
+
+.placeShipSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.placeShipSection span {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+.placeShipSection button {
+  width: 7rem;
+  height: 3rem;
+  font-size: 1rem;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: BlackRose;
+  cursor: pointer;
+  transition: 0.2s ease-in-out 0s;
+  padding: 1rem;
+  border-radius: 50px;
+}
+.placeShipSection button:hover {
+  transform: scale(1.2);
+  background-color: white;
+  color: black;
+}
+
+.playerContainers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.playerContainers span {
+  color: white;
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+.playerContainers #playerOneContainer {
+  flex-direction: column;
+  align-items: center;
+}
+.playerContainers #playerOneContainer button {
+  width: 7rem;
+  height: 3rem;
+  font-size: 1rem;
+  background-color: black;
+  border: none;
+  color: white;
+  font-family: BlackRose;
+  cursor: pointer;
+  transition: 0.2s ease-in-out 0s;
+  padding: 1rem;
+  border-radius: 50px;
+  margin-bottom: 2rem;
+}
+.playerContainers #playerOneContainer button:hover {
+  transform: scale(1.2);
+  background-color: white;
+  color: black;
+}
+.playerContainers #playerTwoContainer {
+  flex-direction: column;
+  align-items: center;
+}
+
 .boardCell {
   background-color: #8cdbe9;
   width: 2.5rem;
@@ -30,15 +158,15 @@ body {
 }
 
 .ship {
-  background-color: #885c36;
+  background-color: black;
 }
 
 .hit {
-  background-color: #ffe600;
+  background-color: #ffbb00;
 }
 
 .damage {
-  background-color: red;
+  background-color: #b80000;
 }
 
 .hovering {
@@ -50,12 +178,81 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 120%;
-  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.gameOverModal .modalContainer {
+  background-color: black;
+  padding: 4rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.gameOverModal .modalContainer div {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+.gameOverModal .modalContainer a {
+  width: 7rem;
+  height: 1.3rem;
+  font-size: 1rem;
+  background-color: white;
+  border: none;
+  color: black;
+  font-family: BlackRose;
+  cursor: pointer;
+  transition: 0.2s ease-in-out 0s;
+  padding: 1rem;
+  border-radius: 50px;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  text-align: center;
+}
+.gameOverModal .modalContainer a:hover {
+  transform: scale(1.2);
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+@media only screen and (max-width: 900px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  header img {
+    width: 10rem;
+  }
+
+  .gameOverModal {
+    height: 190%;
+  }
+}
+@media only screen and (max-width: 530px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+  header img {
+    width: 5rem;
+  }
+
+  .boardCell {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .boardOne,
+.boardTwo {
+    grid-template-columns: repeat(10, 1.5rem);
+    gap: 2px;
+  }
+
+  .gameOverModal {
+    height: 135%;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
