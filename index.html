@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Battleship</title>
+    <script defer src="./main.js"></script>
+    <link rel="stylesheet" href="./styles/index.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Pirate Battle</h1>
+    </header>
+    <main>
+      <h2 id="welcomeMassage">Welcome Captain, aarrr!</h2>
+      <input
+        type="text"
+        placeholder="Name"
+        autocomplete="off"
+        id="playerOneName"
+      />
+      <button id="startBtn">Start Battle!</button>
+
+      <span id="placeShipMassage" class="displayNone"
+        >Place your ships, Captain!</span
+      >
+      <button id="rotateBtn" class="displayNone">Rotate</button>
+      <div id="playerOneContainer" class="displayNone">
+        <span id="playerOneNameDisplay"></span>
+        <div id="playerOneBoard" class="boardOne"></div>
+      </div>
+      <div id="playerTwoContainer" class="displayNone">
+        <span id="playerTwoNameDisplay"></span>
+        <div id="playerTwoBoard" class="boardTwo"></div>
+      </div>
+      <button id="donePlacingBtn" class="displayNone">Done</button>
+      <div id="gameOverModal" class="displayNone gameOverModal">
+        <div class="modalContainer">
+          <div id="gameOverMassage"></div>
+          <a href="./index.html">Play Again!</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
