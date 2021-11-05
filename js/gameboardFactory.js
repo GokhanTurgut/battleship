@@ -15,21 +15,42 @@ function Gameboard() {
     }
     const ships = [];
     function placeShip(length, xCoord, yCoord, horizontal) {
-        const newShip = Ship(length);
-        ships.push(newShip);
+        let shipCollision = false;
         if (horizontal) {
             for (let i = 0; i < length; i++) {
-                board[yCoord][xCoord + i].ship = newShip;
-                board[yCoord][xCoord + i].shipLength = length;
-                board[yCoord][xCoord + i].shipDivision = i + 1;
+                if (board[yCoord][xCoord + i].ship !== "none") {
+                    shipCollision = true;
+                }
             }
         }
         else {
             for (let i = 0; i < length; i++) {
-                board[yCoord + i][xCoord].ship = newShip;
-                board[yCoord + i][xCoord].shipLength = length;
-                board[yCoord + i][xCoord].shipDivision = i + 1;
+                if (board[yCoord + i][xCoord].ship !== "none") {
+                    shipCollision = true;
+                }
             }
+        }
+        if (shipCollision) {
+            return false;
+        }
+        else {
+            const newShip = Ship(length);
+            ships.push(newShip);
+            if (horizontal) {
+                for (let i = 0; i < length; i++) {
+                    board[yCoord][xCoord + i].ship = newShip;
+                    board[yCoord][xCoord + i].shipLength = length;
+                    board[yCoord][xCoord + i].shipDivision = i + 1;
+                }
+            }
+            else {
+                for (let i = 0; i < length; i++) {
+                    board[yCoord + i][xCoord].ship = newShip;
+                    board[yCoord + i][xCoord].shipLength = length;
+                    board[yCoord + i][xCoord].shipDivision = i + 1;
+                }
+            }
+            return true;
         }
     }
     function receiveAttack(xCoord, yCoord) {

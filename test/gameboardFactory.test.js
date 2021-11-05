@@ -1,4 +1,4 @@
-import Gameboard from "../dist/gameboardFactory";
+import Gameboard from "../js/gameboardFactory";
 
 const exampleBoard = Gameboard();
 

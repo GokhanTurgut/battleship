@@ -129,16 +129,34 @@ function placeShipEventAdder(player: any) {
       if (horizontal === true && index % 10 < 11 - shipSize) {
         let xCoord = index % 10;
         let yCoord = Math.floor(index / 10);
-        player.getPlayerBoard().placeShip(shipSize, xCoord, yCoord, horizontal);
-        displayShips(player.getPlayerBoard().getBoard(), playerOneCells, true);
-        shipSize--;
+        if (
+          player
+            .getPlayerBoard()
+            .placeShip(shipSize, xCoord, yCoord, horizontal)
+        ) {
+          displayShips(
+            player.getPlayerBoard().getBoard(),
+            playerOneCells,
+            true
+          );
+          shipSize--;
+        }
       }
       if (horizontal === false && Math.floor(index / 10) < 11 - shipSize) {
         let xCoord = index % 10;
         let yCoord = Math.floor(index / 10);
-        player.getPlayerBoard().placeShip(shipSize, xCoord, yCoord, horizontal);
-        displayShips(player.getPlayerBoard().getBoard(), playerOneCells, true);
-        shipSize--;
+        if (
+          player
+            .getPlayerBoard()
+            .placeShip(shipSize, xCoord, yCoord, horizontal)
+        ) {
+          displayShips(
+            player.getPlayerBoard().getBoard(),
+            playerOneCells,
+            true
+          );
+          shipSize--;
+        }
       }
     });
   });

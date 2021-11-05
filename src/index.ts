@@ -16,13 +16,23 @@ doneBtnEvent(computer, playerOne);
 
 function placeComputerShips(shipSize: number, horizontal: boolean) {
   if (horizontal) {
-    let xCoord = Math.round(Math.random() * (9 - shipSize));
-    let yCoord = Math.round(Math.random() * 9);
-    computer.getPlayerBoard().placeShip(shipSize, xCoord, yCoord, horizontal);
+    let result: boolean;
+    do {
+      let xCoord = Math.round(Math.random() * (9 - shipSize));
+      let yCoord = Math.round(Math.random() * 9);
+      result = computer
+        .getPlayerBoard()
+        .placeShip(shipSize, xCoord, yCoord, horizontal);
+    } while (result === false);
   } else {
-    let xCoord = Math.round(Math.random() * 9);
-    let yCoord = Math.round(Math.random() * (9 - shipSize));
-    computer.getPlayerBoard().placeShip(shipSize, xCoord, yCoord, horizontal);
+    let result: boolean;
+    do {
+      let xCoord = Math.round(Math.random() * 9);
+      let yCoord = Math.round(Math.random() * (9 - shipSize));
+      result = computer
+        .getPlayerBoard()
+        .placeShip(shipSize, xCoord, yCoord, horizontal);
+    } while (result === false);
   }
 }
 

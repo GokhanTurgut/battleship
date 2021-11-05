@@ -1,33 +1,25 @@
-import Player from "../dist/playerFactory";
+import Player from "../js/playerFactory";
 
-const examplePlayer = Player("examplePlayer", false);
-const exampleAI = Player("exampleAI", true);
-
-test("Player creation works", () => {
-  expect(examplePlayer.getName()).toBe("examplePlayer");
-});
+const examplePlayer = Player(false);
+const exampleAI = Player(true);
 
 test("Player board exists", () => {
-  expect(examplePlayer.getBoard()).not.toBeUndefined();
-});
-
-test("AI creation works", () => {
-  expect(exampleAI.getName()).toBe("exampleAI");
+  expect(examplePlayer.getPlayerBoard()).not.toBeUndefined();
 });
 
 test("AI board exists", () => {
-  expect(exampleAI.getBoard()).not.toBeUndefined();
+  expect(exampleAI.getPlayerBoard()).not.toBeUndefined();
 });
 
 test("Can place ships from player object", () => {
-  examplePlayer.getBoard().placeShip(3, 4, 2, true);
-  examplePlayer.getBoard().placeShip(5, 2, 8, true);
-  expect(examplePlayer.getBoard().gameOver()).toBe(false);
+  examplePlayer.getPlayerBoard().placeShip(3, 4, 2, true);
+  examplePlayer.getPlayerBoard().placeShip(5, 2, 8, true);
+  expect(examplePlayer.getPlayerBoard().gameOver()).toBe(false);
 });
 
 test("AI can make moves", () => {
   for (let i = 0; i < 100; i++) {
-    exampleAI.aiMove(examplePlayer.getBoard());
+    exampleAI.aiMove(examplePlayer.getPlayerBoard());
   }
-  expect(examplePlayer.getBoard().gameOver()).toBe(true);
+  expect(examplePlayer.getPlayerBoard().gameOver()).toBe(true);
 });

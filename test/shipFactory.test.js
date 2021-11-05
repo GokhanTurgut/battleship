@@ -1,4 +1,4 @@
-import Ship from "../dist/shipFactory";
+import Ship from "../js/shipFactory";
 
 const example = Ship(4);
 
